@@ -1,0 +1,80 @@
+<div class="options">
+  <div class="tipo">
+    <mat-form-field appearance="fill">
+      <mat-label>Escolha um tipo</mat-label>
+      <mat-select [disabled]="disableSelect.value" #matSelect required (selectionChange)="selecionaTipo($event.value)">
+        <mat-option *ngFor="let opcao of opcoes" [value]="opcao.op">{{ opcao.type }}</mat-option>
+
+      </mat-select>
+    </mat-form-field>
+
+    <p>
+      <mat-checkbox [formControl]="disableSelect" (change)="onChangeDemo($event)">Quero variar!</mat-checkbox>
+    </p>
+  </div>
+
+  <div class="pesquisa">
+    <mat-form-field >
+      <mat-label>Escolha sua batata</mat-label>
+      <input matInput type="text" matInput type="text" [(ngModel)]="value" (input)="search($event)">
+      <button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-form-field>
+  </div>
+</div>
+
+
+<div class="tabela">
+  <table mat-table [dataSource]="batata" class="mat-elevation-z8">
+
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef> Nr. </th>
+      <td mat-cell *matCellDef="let produto"> {{ produto.id }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="nome">
+      <th mat-header-cell *matHeaderCellDef> Nome </th>
+      <td mat-cell *matCellDef="let produto"> {{ produto.nome }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="tipo">
+      <th mat-header-cell *matHeaderCellDef> Tipo </th>
+      <td mat-cell *matCellDef="let produto"> {{ produto.tipo }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="valor">
+      <th mat-header-cell *matHeaderCellDef> Valor </th>
+      <td mat-cell *matCellDef="let produto"> {{ produto.valor }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="quantidade" style="text-align: center;">
+      <th mat-header-cell *matHeaderCellDef> Quantidade </th>
+      <td mat-cell *matCellDef="let produto">
+
+        <button (click)="addQTD(produto)" (click)="somaPagar()" class="btn"> + </button>
+
+        <input min="0" type="number" [(ngModel)] ="produto.qtd" style="margin-left: 1em;margin-right: 1em;">
+
+        <button (click)="subQTD(produto)" (click)="somaPagar()" class="btn"> - </button>
+
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="total">
+      <th mat-header-cell *matHeaderCellDef> Total </th>
+      <td mat-cell *matCellDef="let produto"> {{ produto.total }} </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+</div>
+
+<div class="total">
+  <mat-card class="card-total">
+    <h3>Total a pagar: R$ {{somaPagar()}}</h3>
+    <button (click)="fechaPedido(); openDialog()">Fechar pedido</button>
+  </mat-card>
+</div>
+

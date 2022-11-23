@@ -1,0 +1,30 @@
+<div class="formulario" >
+    <mat-card class="card-login">
+        <h2>Login</h2>
+        <mat-card-content>
+            <form (ngSubmit)="logar()">
+                <div class="fields" fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="10px">
+                    <mat-icon color="primary">account_circle</mat-icon>
+                    <mat-form-field appearance="fill">
+                    <div class="fieldInput">
+                        <input matInput type="text" [(ngModel)]="login" name="login" placeholder="Login">
+                    </div>
+                    </mat-form-field>
+                </div>
+
+                <div class="fields" fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="10px">   
+                    <mat-icon color="primary">lock</mat-icon>
+                    <mat-form-field  appearance="fill">
+                    <div class="fieldInput">
+                        <input matInput  type="password" [(ngModel)]="senha" name="name" placeholder="Senha">
+                    </div>
+                    </mat-form-field>
+                </div>
+
+                <button class="btn" mat-raised-button color="primary">Entrar</button>
+            </form>
+        </mat-card-content>
+    </mat-card>
+</div>
+
+

@@ -1,0 +1,47 @@
+<div>
+  <mat-sidenav-container>
+
+    <mat-sidenav [(opened)]="sidenav_opened" #sidenav mode="over" class="navbar">
+      <mat-nav-list>
+        <mat-list-item routerLink="/"><mat-icon>home</mat-icon>&nbsp;&nbsp;Inicio</mat-list-item>
+        <mat-list-item routerLink="/batatas"><mat-icon>favorite</mat-icon>&nbsp;&nbsp;Batatas</mat-list-item>
+        <mat-list-item routerLink="/assada"><mat-icon>favorite</mat-icon>&nbsp;&nbsp;Batatas assadas</mat-list-item>
+        <mat-list-item routerLink="/pure"><mat-icon>favorite</mat-icon>&nbsp;&nbsp;Purê de batatas</mat-list-item>
+        <mat-list-item routerLink="/fritas"><mat-icon>favorite</mat-icon>&nbsp;&nbsp;Batatas fritas</mat-list-item>
+        <mat-list-item routerLink="/sementes"><mat-icon>favorite</mat-icon>&nbsp;&nbsp;Semente de batatas</mat-list-item>
+        <mat-list-item routerLink="/criar-pedido"><mat-icon>favorite</mat-icon>&nbsp;&nbsp;Criar Pedido</mat-list-item>
+      </mat-nav-list>
+    </mat-sidenav>
+
+    <mat-sidenav-content class="mat-sidenav" >
+      <mat-toolbar color="primary" *ngIf="usuariolog" class="bb">
+        <div>
+          <button (click)="sidenav_opened = !sidenav_opened" style="border-radius: 2px">
+            <mat-icon>menu</mat-icon>
+          </button>
+        </div>
+        <div>
+          <a routerLink="/">
+            <img [src]="imagem" class="logo">
+          </a>
+        </div>
+        <div class="usuario">
+          <p>{{ lo }}, Bem vindo!!</p>
+          <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu" class="btn-menu">
+            <mat-icon>account_circle</mat-icon>
+            <mat-menu #menu="matMenu" class="mat-menu">
+              <button mat-menu-item (click)="openDialog()">
+                <mat-icon>power_settings_new</mat-icon>
+                <span>Logout</span>
+              </button>
+            </mat-menu>
+          </button>
+        </div>
+      </mat-toolbar>
+
+      <router-outlet></router-outlet>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>
+
+

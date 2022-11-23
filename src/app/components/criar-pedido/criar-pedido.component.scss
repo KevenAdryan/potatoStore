@@ -1,0 +1,66 @@
+.tipo {
+    display: flex;
+    align-items: center;
+    margin: 3em 0 0 6em;
+    gap: 15px;
+}
+
+.options {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+}
+
+.pesquisa {
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 9em;
+  margin-top: 3.5em;
+}
+
+// tabela
+table {
+  width: 84%;
+  text-align: center;
+}
+
+table th {
+  text-align: center;
+}
+
+.tabela {
+  display: flex;
+  justify-content: center;
+
+  height: 500px;
+  overflow: auto;
+}
+
+.tabela input {
+  width: 24px;
+  text-align: center;
+}
+
+.btn {
+  font-size: 22px;
+  height: 25px;
+  width: 25px;
+}
+
+.total{
+  //width: 84%;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+}
+
+.card-total {
+  margin-top: 1em;
+  width: 81%;
+}
+
+
+
+
+

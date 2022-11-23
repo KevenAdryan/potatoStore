@@ -1,0 +1,22 @@
+
+<div *ngIf="totalPedidoNum > 0">
+  <h1 mat-dialog-title>Confirme seu pedido!</h1>
+  <div mat-dialog-content>
+      <mat-list role="list" *ngFor="let produto of prodPedido">
+          <mat-list-item role="listitem">* {{ produto.qtd }} - {{ produto.nome }}</mat-list-item>
+        </mat-list>
+
+        <br />
+        <h2>R$ {{ totalPedido }}</h2>
+  </div>
+  <div mat-dialog-actions>
+    <button mat-button mat-dialog-close style="margin-left: 1em;">Cancelar</button>
+    <button mat-dialog-close style="height: 35.8px; margin-left: 2.5em;" (click)="finalizaPedido(); pressionado = true">Confirmar</button>
+  </div>
+</div>
+
+<div *ngIf="totalPedidoNum <= 0">
+  <h1>Seu pedido não possui itens!</h1>
+  
+  <button mat-button mat-dialog-close style="margin-left: 8em;">Retornar</button>
+</div>

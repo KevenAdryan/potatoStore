@@ -1,0 +1,40 @@
+<div style="display: flex;" class="prod">
+    <mat-card class="prodItem">
+        <div style="display: flex;">
+            <div class="item">
+                <div class="container">
+                    <img [src]="img" style="text-align: center;">
+                </div>
+            </div>
+            <div class="descricao">
+                <div class="itemDesc">
+                    <h1>{{ nome }} <br /> Por Apenas <br /> R$ {{ valor }} !!!!</h1>
+                </div>
+                <p>Uma batata rica em nutrientes.
+                    Pode ser utilizada em qualquer
+                    receita e em qualquer variável do seu código.</p>
+                <p> * Recem colhida;</p>
+                <p> * Fresca (toma banho com chinelo);</p>
+                <p> * Pronta entrega (se ela estiver pronta para ser entregue).</p>
+            </div>
+            <div class="compra">
+                <mat-card style="background: #4F4F4F;">
+                    <p>Frete gratis para toda região 10 de cariacica.</p>
+                    <p>Frete com taxa a partir de R$ 2,00 para todo o brasil.</p>
+                    <p>Entregas feitas somente para quem joga ARAM.</p>
+                    <mat-divider></mat-divider>
+                    <br />
+                    <p>Quantidade vendida:</p>
+                    <p>É DE MAIS DE OITO MIL!</p>
+                    <mat-divider></mat-divider>
+                    <br />
+                    <p style="text-align: center;">Estoque disponível!!</p>
+
+                    <button class="btn" mat-raised-button color="primary" (click)="redirectPedido()">Comprar agora</button>
+
+                    <p style="text-align: center;">*Aceitamos cartões de débito ou crédito*</p>
+                </mat-card>
+            </div>
+        </div>
+    </mat-card>
+</div>

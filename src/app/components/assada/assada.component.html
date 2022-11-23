@@ -1,0 +1,11 @@
+
+<div *ngIf="produtos" style="display: flex;" class="prod">
+    <mat-card *ngFor = "let produto of produtos; let i = index" class="prodItem">
+      <div class="container" (click)="redirectDetail(i)">
+        <img src="{{ produto.url }}" style="text-align: center;">
+      </div>
+      <div class="itemDesc" (click)="redirectDetail(i)">
+        <mat-panel-title>{{ produto.nome }}&nbsp;&nbsp;-&nbsp;&nbsp;R$ {{ produto.valor }}</mat-panel-title>
+      </div>
+    </mat-card>
+</div>

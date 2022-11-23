@@ -1,0 +1,58 @@
+.prod {
+  display: flex;
+  margin-top: 3em;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.prodItem {
+  border: white solid 1px;
+  text-align: center;
+  width: 85%;
+  margin-bottom: 2em;
+}
+
+.item {
+  width: 60%;
+  height: 70%;
+}
+
+.container {
+  border: white solid 1px;
+}
+
+.container img {
+  margin-top: 1em;
+  width: 480px;
+  height: 430px ;
+}
+
+.itemDesc {
+  margin-top: 0.5em;
+  margin-bottom: 1em;
+  text-align: center;
+  font-size: 24px;
+}
+
+.descricao {
+  width: 18%;
+  text-align: justify;
+  text-justify: inter-word;
+  margin: 0 2em 0 2em;
+}
+
+.compra{
+  width: 20%;
+  display: flex;
+  text-align: left;
+  justify-content: flex-end;
+}
+
+.btn {
+  display: flex;
+  padding: 0.7em 1em 0.7em 1em;
+  font-size: 24px;
+  align-items: center;
+  margin-left: 0.3em;
+  margin-bottom: 0.5em;
+}

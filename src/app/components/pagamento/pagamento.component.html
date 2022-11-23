@@ -1,0 +1,184 @@
+<mat-card>
+    <!-- opcoes de pagamento -->
+    <h3>Metodo de pagamento:</h3>
+        <mat-form-field appearance="fill">
+            <mat-label>Selecione uma opção</mat-label>
+            <mat-select [disabled]="disableSelect.value" #matSelect required (selectionChange)="selecionaCartao($event.value)">
+                <mat-option *ngFor="let opcao of opcoesPagamento" [value]="opcao.op">{{ opcao.type }}</mat-option>
+            </mat-select>
+        </mat-form-field>
+
+    <!-- opcoes de pix -->
+    <div *ngIf="pix">
+        <h3>Tipo de Pix</h3>
+        <mat-form-field appearance="fill">
+            <mat-label>Selecione uma opção</mat-label>
+            <mat-select [disabled]="disableSelect.value" #matSelect required (selectionChange)="selecionaPix($event.value)">
+                <mat-option *ngFor="let opcao of opcoesPix" [value]="opcao.op">{{ opcao.type }}</mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+
+    <!-- opcoes de cartão -->
+    <div *ngIf="cartao">
+        <h3>Credito ou Debito?</h3>
+        <mat-form-field appearance="fill">
+            <mat-label>Selecione uma opção</mat-label>
+            <mat-select [disabled]="disableSelect.value" #matSelect required (selectionChange)="selecionaPagCartao($event.value)">
+                <mat-option *ngFor="let opcao of opcoesPagCartao" [value]="opcao.op">{{ opcao.type }}</mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+
+<!-- ----------------------------------------------------------- -->
+
+<!-- opcoes de pix -->
+    <div>
+        <div *ngIf="pix && img">
+            <img src="https://uploaddeimagens.com.br/images/004/053/634/full/adlw3pfmoto31.png?1665162470">
+        </div>
+
+        <div *ngIf="pix && copiaecola">
+            <h2>as6d5846as14d6a46d4a865sd48as46das65d8468as4d6a4s16d4</h2>
+        </div>
+
+        <div *ngIf="pix && pixLoja">
+            <h2>LojapotatoStore@tudonosso.br.com</h2>
+        </div>
+
+        <div *ngIf="pix && img || pix && copiaecola || pix && pixLoja">
+            <h3>Endereço</h3>
+            <form #f="ngForm">
+    
+                <div class="Form-group">
+                    <mat-form-field>
+                        <mat-label>CEP:</mat-label>
+                        <input matInput type="text" class="Form-control" id="cep" name="cep" ngModel #cep="ngModel" maxlength="9">
+                    </mat-form-field>
+    
+                    <button  mat-button color="primary" (click)="consultaCep(cep.value , f)">
+                        <mat-icon>search</mat-icon>
+                    </button>
+                </div>
+    
+                <div class="Form-group">
+                    <mat-form-field>
+                        <mat-label>RUA:</mat-label>
+                        <input matInput type="text" class="Form-control" id="logradouro" name="logradouro" ngModel #logradouro="ngModel" disabled="">
+                    </mat-form-field>
+                </div>
+    
+                <div class="Form-group">
+                    <mat-form-field>
+                        <mat-label>BAIRRO:</mat-label>
+                        <input matInput type="text" class="Form-control" id="bairro" name="bairro" ngModel #bairro="ngModel" disabled="">
+                    </mat-form-field>
+                </div>
+    
+                <div class="Form-group">
+                    <mat-form-field>
+                        <mat-label>CIDADE:</mat-label>
+                        <input matInput type="text" class="Form-control" id="cidade" name="cidade" ngModel #cidade="ngModel" disabled="">
+                    </mat-form-field>
+                </div>
+    
+                <div class="Form-group">
+                    <mat-form-field>
+                        <mat-label>UF:</mat-label>
+                        <input matInput type="text" id="uf" name="uf" ngModel #uf="ngModel" disabled="">
+                    </mat-form-field>
+                </div>
+            </form>
+            
+        </div>
+
+        <div *ngIf="pixSelecionado && pix && UFPreenchida">
+            <button mat-raised-button color="primary" (click)="finalizaPedidoPix()">Finalizar Pedido</button>
+        </div>
+    </div>
+<!-- opcoes de pix -->
+
+<!-- input cartão -->
+<div *ngIf="cartao && credito || cartao && debito">
+    <h3>Informe os dados do seu cartão</h3>
+    <div>
+        <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Numero do cartão</mat-label>
+            <input matInput [(ngModel)]="numCard" type="number" pattern="\d*" maxlength="16" placeholder="xxxx xxxx xxxx xxxx">
+        </mat-form-field>
+    </div>
+    <div>
+        <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Venc</mat-label>
+            <input matInput [(ngModel)]="venc" type="number" placeholder="XX/XX" maxlength="5">
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>CVC</mat-label>
+            <input matInput [(ngModel)]="cvc" type="number" placeholder="XXX" maxlength="5">
+        </mat-form-field>  
+    </div>
+
+    <mat-form-field appearance="fill">
+        <mat-label>Selecione uma opção</mat-label>
+        <mat-select [disabled]="disableSelect.value" #matSelect required (selectionChange)="selecionaNumParcelas($event.value, parcelas)">
+            <mat-option *ngFor="let i = index; let parcela of parcelas" [value]="i">{{ parcela }}</mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <div *ngIf="parcelaSelecionada">
+        <h3>Endereço</h3>
+        <form #f="ngForm">
+
+            <div class="Form-group">
+                <mat-form-field>
+                    <mat-label>CEP:</mat-label>
+                    <input matInput type="text" class="Form-control" id="cep" name="cep" ngModel #cep="ngModel" maxlength="9">
+                </mat-form-field>
+
+                <button  mat-button color="primary" (click)="consultaCep(cep.value , f)">
+                    <mat-icon>search</mat-icon>
+                </button>
+            </div>
+
+            <div class="Form-group">
+                <mat-form-field>
+                    <mat-label>RUA:</mat-label>
+                    <input matInput type="text" class="Form-control" id="logradouro" name="logradouro" ngModel #logradouro="ngModel" disabled="">
+                </mat-form-field>
+            </div>
+
+            <div class="Form-group">
+                <mat-form-field>
+                    <mat-label>BAIRRO:</mat-label>
+                    <input matInput type="text" class="Form-control" id="bairro" name="bairro" ngModel #bairro="ngModel" disabled="">
+                </mat-form-field>
+            </div>
+
+            <div class="Form-group">
+                <mat-form-field>
+                    <mat-label>CIDADE:</mat-label>
+                    <input matInput type="text" class="Form-control" id="cidade" name="cidade" ngModel #cidade="ngModel" disabled="">
+                </mat-form-field>
+            </div>
+
+            <div class="Form-group">
+                <mat-form-field>
+                    <mat-label>UF:</mat-label>
+                    <input matInput type="text" id="uf" name="uf" ngModel #uf="ngModel" disabled="">
+                </mat-form-field>
+            </div>
+        </form>
+        
+    </div>
+
+    <div *ngIf="cartao && UFPreenchida">
+        <button mat-raised-button color="primary" (click)="finalizaPedido()">Finalizar Pedido</button>
+    </div>
+
+</div>
+
+
+<!-- input cartão -->
+
+</mat-card>
